@@ -1,4 +1,4 @@
-package com.example.together
+package com.azix.together
 
 import io.flutter.embedding.android.FlutterActivity
 

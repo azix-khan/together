@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:together/features/auth/presentation/pages/login_page.dart';
 import 'package:together/firebase_options.dart';
+import 'package:together/themes/light_mode.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,9 +15,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: lightMode,
       debugShowCheckedModeBanner: false,
-      home: Scaffold(),
+      home: LoginPage(),
     );
   }
 }
