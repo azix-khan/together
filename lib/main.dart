@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:together/features/auth/presentation/pages/login_page.dart';
+import 'package:together/features/auth/presentation/pages/auth_page.dart';
 import 'package:together/firebase_options.dart';
 import 'package:together/themes/light_mode.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: lightMode,
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: const AuthPage(),
     );
   }
 }

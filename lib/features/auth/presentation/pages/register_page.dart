@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:together/features/auth/presentation/components/my_button.dart';
-import 'package:together/features/auth/presentation/components/my_text_field.dart';
 
-class LoginPage extends StatefulWidget {
+import '../components/my_button.dart';
+import '../components/my_text_field.dart';
+
+class RegisterPage extends StatefulWidget {
   final void Function()? togglePages;
-  const LoginPage({super.key, required this.togglePages});
+
+  const RegisterPage({super.key, required this.togglePages});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-// Build UI
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   // controllers
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final paswordController = TextEditingController();
+  final confirmpaswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +40,23 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 25,
               ),
-              // welcome back msg
+              // create account msg
               Text(
-                "Welcome back, you've been missed!",
+                "Let's create an account for you!",
                 style: TextStyle(
                     color: Theme.of(context).primaryColor, fontSize: 16),
               ),
               const SizedBox(
                 height: 50,
+              ),
+              // name textfield
+              MyTextField(
+                controller: nameController,
+                hintText: 'Name',
+                obscureText: false,
+              ),
+              const SizedBox(
+                height: 10,
               ),
               // email textfield
               MyTextField(
@@ -62,19 +74,28 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true,
               ),
               const SizedBox(
+                height: 10,
+              ),
+              // confirm password textfield
+              MyTextField(
+                controller: confirmpaswordController,
+                hintText: 'Confirm password',
+                obscureText: true,
+              ),
+              const SizedBox(
                 height: 25,
               ),
-              // login button
-              MyButton(onTap: () {}, text: "Login"),
+              // Register button
+              MyButton(onTap: () {}, text: "Register"),
               const SizedBox(
                 height: 50,
               ),
-              // not a member? register now
+              // already a member? login now
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Not a member?",
+                    "Already a member?",
                     style: TextStyle(
                       fontSize: 16,
                       color: Theme.of(context).colorScheme.primary,
@@ -83,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                   GestureDetector(
                     onTap: widget.togglePages,
                     child: Text(
-                      " Register now",
+                      " Login now",
                       style: TextStyle(
                         fontSize: 16,
                         color: Theme.of(context).colorScheme.inversePrimary,
