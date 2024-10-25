@@ -4,7 +4,7 @@ import 'package:together/features/auth/data/firebase_auth_repo.dart';
 import 'package:together/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:together/features/auth/presentation/cubits/auth_state.dart';
 import 'features/auth/presentation/pages/auth_page.dart';
-import 'features/post/presentation/pages/home_page.dart';
+import 'features/home/presentation/pages/home_page.dart';
 import 'themes/light_mode.dart';
 
 class MyApp extends StatelessWidget {
@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: BlocConsumer<AuthCubit, AuthState>(
           builder: (context, authState) {
-            print(authState);
             // if Unauthenticated go to the auth page (login/register)
             if (authState is UnAuthenticated) {
               return const AuthPage();
