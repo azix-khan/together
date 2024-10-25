@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "247444497634",
+    "project_id": "together-38380",
+    "storage_bucket": "together-38380.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247444497634:android:9e467d320a99ee30e26abb",
+        "android_client_info": {
+          "package_name": "com.azix.together"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGtN6gWtxvZeCa5QSPFHPdGZGI3MthUEc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
