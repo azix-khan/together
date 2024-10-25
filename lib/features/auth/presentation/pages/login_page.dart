@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:together/features/auth/presentation/components/my_button.dart';
 import 'package:together/features/auth/presentation/components/my_text_field.dart';
+import 'package:together/features/auth/presentation/cubits/auth_cubit.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? togglePages;
@@ -10,12 +12,39 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-// Build UI
 class _LoginPageState extends State<LoginPage> {
   // controllers
   final emailController = TextEditingController();
   final paswordController = TextEditingController();
 
+  // login function
+  void login() {
+    // extracting text from controllers
+    final String email = emailController.text;
+    final String password = paswordController.text;
+
+    // auth cubit
+    final authCubit = context.read<AuthCubit>();
+
+    // ensure text fields are not empty
+    if (email.isNotEmpty && password.isNotEmpty) {
+      // login
+      authCubit.login(email, password);
+    } else {
+      // display an error when fields are empty
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Please enter the required fileds')));
+    }
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    paswordController.dispose();
+    super.dispose();
+  }
+
+// Build UI
   @override
   Widget build(BuildContext context) {
     // SCAFFOLD
@@ -57,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               // password textfield
               MyTextField(
-                controller: emailController,
+                controller: paswordController,
                 hintText: 'Password',
                 obscureText: true,
               ),
@@ -65,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 25,
               ),
               // login button
-              MyButton(onTap: () {}, text: "Login"),
+              MyButton(onTap: login, text: "Login"),
               const SizedBox(
                 height: 50,
               ),

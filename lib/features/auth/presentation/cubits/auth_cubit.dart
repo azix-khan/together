@@ -6,9 +6,9 @@ Auth Cubit state managemnet
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:together/features/auth/domain/entities/app_user.dart';
 import 'package:together/features/auth/domain/repository/auth_repo.dart';
-import 'package:together/features/auth/presentation/cubits/auth_states.dart';
+import 'package:together/features/auth/presentation/cubits/auth_state.dart';
 
-class AuthCubit extends Cubit<AuthStates> {
+class AuthCubit extends Cubit<AuthState> {
   final AuthRepo authRepo;
   AppUser? _currentUser;
   AuthCubit({required this.authRepo}) : super(AuthInitial());
