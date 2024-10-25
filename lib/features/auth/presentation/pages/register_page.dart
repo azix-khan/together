@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:together/features/auth/presentation/cubits/auth_cubit.dart';
 import '../components/my_button.dart';
 import '../components/my_text_field.dart';
 
@@ -17,7 +18,49 @@ class _RegisterPageState extends State<RegisterPage> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final paswordController = TextEditingController();
-  final confirmpaswordController = TextEditingController();
+  final confirmpasswordController = TextEditingController();
+
+  // when register button pressed
+  void register() {
+    // prepare info
+    final String name = nameController.text;
+    final String email = emailController.text;
+    final String password = paswordController.text;
+    final String confirmPassword = confirmpasswordController.text;
+
+    // auth cubit
+    final authCubit = context.read<AuthCubit>();
+
+    // ensure the fields are not empty
+    if (name.isNotEmpty &&
+        email.isNotEmpty &&
+        password.isNotEmpty &&
+        confirmPassword.isNotEmpty) {
+      // ensure password match
+      if (password == confirmPassword) {
+        authCubit.register(name, email, password);
+      }
+
+      // password did not match
+      else {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Password did not match!")));
+      }
+      // field are empty, display error
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Please fill are the fields")));
+    }
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    paswordController.dispose();
+    confirmpasswordController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               // password textfield
               MyTextField(
-                controller: emailController,
+                controller: paswordController,
                 hintText: 'Password',
                 obscureText: true,
               ),
@@ -78,7 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               // confirm password textfield
               MyTextField(
-                controller: confirmpaswordController,
+                controller: confirmpasswordController,
                 hintText: 'Confirm password',
                 obscureText: true,
               ),
@@ -86,7 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 25,
               ),
               // Register button
-              MyButton(onTap: () {}, text: "Register"),
+              MyButton(onTap: register, text: "Register"),
               const SizedBox(
                 height: 50,
               ),
