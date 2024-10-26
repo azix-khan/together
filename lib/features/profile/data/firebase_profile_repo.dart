@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:together/features/profile/domain/entities/profile_user.dart';
 import 'package:together/features/profile/domain/repository/profile_repo.dart';
 
@@ -21,8 +20,8 @@ class FirebaseProfileRepo implements ProfileRepo {
             uid: uid,
             name: userData['name'],
             email: userData['email'],
-            bio: userData['bio'],
-            profileImageUrl: userData['profileImageUrl'],
+            bio: userData['bio'] ?? '',
+            profileImageUrl: userData['profileImageUrl'].toString(),
           );
         }
       }
