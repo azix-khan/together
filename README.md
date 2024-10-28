@@ -1,16 +1,31 @@
 # together
 
-A new Flutter project.
+Get Together with TOGETHER, an Full Stack Social Media App built from scratch.
+
+• Using Flutter, BLoC, Firebase
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+which includes:
 
-A few resources to get you started if this is your first Flutter project:
+🔒 Authentication.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+⚙️ Menu Drawer.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🥷🏽 User Profile.
+
+🤪 Profile Picture.
+
+📸 Post - Upload & Delete.
+
+❤️ Post - Likes.
+
+💬 Post - Comments.
+
+🤝 Follow System.
+
+🔎 Search Users.
+
+🎨 Themes - Light & Dark Mode.
+
+🌎 Deploy to Web.
