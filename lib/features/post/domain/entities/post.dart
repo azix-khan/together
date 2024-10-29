@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Post {
   final String id;
   final String userId;
@@ -14,4 +16,40 @@ class Post {
     required this.imageUrl,
     required this.timestamp,
   });
+
+  // if want to change anything we use copywith method
+  Post copyWith({String? imageUrl}) {
+    return Post(
+      id: id,
+      userId: userId,
+      userName: userName,
+      text: text,
+      imageUrl: imageUrl ?? this.imageUrl,
+      timestamp: timestamp,
+    );
+  }
+
+  // convert post obj to json store it in firebase
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'userId': userId,
+      'userName': userName,
+      'text': text,
+      'image': imageUrl,
+      'timestamp': Timestamp.fromDate(timestamp),
+    };
+  }
+
+  // convert json obj to post
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+      id: json['id'],
+      userId: json['userId'],
+      userName: json['userName'],
+      text: json['text'],
+      imageUrl: json['imageUrl'],
+      timestamp: (json['timestamp'] as Timestamp).toDate(),
+    );
+  }
 }
