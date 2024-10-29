@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:together/features/auth/data/firebase_auth_repo.dart';
 import 'package:together/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:together/features/auth/presentation/cubits/auth_state.dart';
+import 'package:together/features/post/data/firebase_post_repo.dart';
+import 'package:together/features/post/presentation/cubits/post_cubit.dart';
 import 'package:together/features/profile/presentation/cubits/profile_cubit.dart';
 import 'package:together/features/storage/data/firebase_storage_repo.dart';
 import 'features/auth/presentation/pages/auth_page.dart';
@@ -17,6 +19,8 @@ class MyApp extends StatelessWidget {
   final firebaseProfileRepo = FirebaseProfileRepo();
   // get storage repo
   final firebaseStorageRepo = FirebaseStorageRepo();
+  // get post repo
+  final firebasepostRepo = FirebasePostRepo();
 
   MyApp({super.key});
 
@@ -34,6 +38,13 @@ class MyApp extends StatelessWidget {
         BlocProvider<ProfileCubit>(
           create: (context) => ProfileCubit(
             profileRepo: firebaseProfileRepo,
+            storageRepo: firebaseStorageRepo,
+          ),
+        ),
+        // post cubit
+        BlocProvider<PostCubit>(
+          create: (context) => PostCubit(
+            postRepo: firebasepostRepo,
             storageRepo: firebaseStorageRepo,
           ),
         ),
