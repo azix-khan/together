@@ -111,13 +111,19 @@ class _UploadPostPageState extends State<UploadPostPage> {
         if (state is PostsLoading || state is PostUploading) {
           return const Scaffold(
             body: Center(
-              child: CircularProgressIndicator(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(),
+                  Text("Uploading post..."),
+                ],
+              ),
             ),
           );
+        } else {
+          // return upload page
+          return buildUploadPage();
         }
-
-        // return upload page
-        return buildUploadPage();
       },
 
       // go to the previous page when the upload is done & the post are loaded
