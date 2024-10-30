@@ -94,6 +94,10 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) {
                 // get individual posts on the big list
                 final post = allPosts[index];
+                print("post id: ${post.id}");
+                print("post name: ${post.userName}");
+                print("post title: ${post.text}");
+                print("post imageUrl: ${post.imageUrl}");
 
                 // get image
                 return CachedNetworkImage(

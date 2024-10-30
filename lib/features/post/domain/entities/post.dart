@@ -36,7 +36,7 @@ class Post {
       'userId': userId,
       'userName': userName,
       'text': text,
-      'image': imageUrl,
+      'imageUrl': imageUrl,
       'timestamp': Timestamp.fromDate(timestamp),
     };
   }

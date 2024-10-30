@@ -50,6 +50,14 @@ class PostCubit extends Cubit<PostState> {
     try {
       emit(PostsLoading());
       final posts = await postRepo.fetchAllPosts();
+
+      // Debug: Print each post's fields
+      for (var post in posts) {
+        print("Post ID: ${post.id}");
+        print("User Name: ${post.userName}");
+        print("Text: ${post.text}");
+        print("Image URL: ${post.imageUrl}");
+      }
       emit(PostsLoaded(posts));
     } catch (e) {
       emit(PostsError("Faild to fetch posts: $e"));
