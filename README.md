@@ -22,9 +22,6 @@ which includes:
 
 💬 Post - Comments.
 
-
-⚒️ In progress...
-
 🤝 Follow System.
 
 🔎 Search Users.
@@ -32,3 +29,5 @@ which includes:
 🎨 Themes - Light & Dark Mode.
 
 🌎 Deploy to Web.
+
+.
