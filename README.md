@@ -6,7 +6,7 @@ Get Together with TOGETHER, an Full Stack Social Media App built from scratch.
 
 ## Getting Started
 
-which includes:
+###which includes:
 
 🔒 Authentication.
 
