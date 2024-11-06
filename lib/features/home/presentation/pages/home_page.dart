@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:together/features/home/presentation/components/my_drawer.dart';
+import 'package:together/features/home/presentation/components/post_tile.dart';
 import 'package:together/features/post/presentation/cubits/post_states.dart';
 
 import '../../../post/presentation/cubits/post_cubit.dart';
@@ -96,13 +96,9 @@ class _HomePageState extends State<HomePage> {
                 final post = allPosts[index];
 
                 // get image
-                return CachedNetworkImage(
-                  imageUrl: post.imageUrl,
-                  height: 430,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) => const SizedBox(height: 430),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                return PostTile(
+                  post: post,
+                  onDeletePressed: () => deletePost(post.id),
                 );
               },
             );
