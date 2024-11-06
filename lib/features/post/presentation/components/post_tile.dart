@@ -65,8 +65,28 @@ class _PostTileState extends State<PostTile> {
     // grad the current like status
     final isLiked = widget.post.likes.contains(currentUser!.uid);
 
+    // optimistically like and update the UI
+    setState(() {
+      if (isLiked) {
+        widget.post.likes.remove(currentUser!.uid); // unlike
+      } else {
+        widget.post.likes.add(currentUser!.uid); // like
+      }
+    });
+
     // update the like
-    postCubit.toggleLikePost(widget.post.id, currentUser!.uid);
+    postCubit
+        .toggleLikePost(widget.post.id, currentUser!.uid)
+        .catchError((error) {
+      // if there is an error, revert back to the orignal values
+      setState(() {
+        if (isLiked) {
+          widget.post.likes.add(currentUser!.uid); // revert unlike
+        } else {
+          widget.post.likes.remove(currentUser!.uid); // revert like
+        }
+      });
+    });
   }
 
   // show opptions on deletion
@@ -171,21 +191,37 @@ class _PostTileState extends State<PostTile> {
             padding: const EdgeInsets.all(20.0),
             child: Row(
               children: [
-                // like button
-                GestureDetector(
-                  onTap: toggleLikePost,
-                  child: Icon(
-                    widget.post.likes.contains(currentUser!.uid)
-                        ? Icons.favorite
-                        : Icons.favorite_border,
+                SizedBox(
+                  width: 50,
+                  child: Row(
+                    children: [
+                      // like button
+                      GestureDetector(
+                        onTap: toggleLikePost,
+                        child: Icon(
+                          widget.post.likes.contains(currentUser!.uid)
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: widget.post.likes.contains(currentUser!.uid)
+                              ? Colors.red
+                              : Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+
+                      const SizedBox(
+                        width: 5,
+                      ),
+
+                      // count of likes
+                      Text(
+                        widget.post.likes.length.toString(),
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-
-                // count of likes
-                Text("0"),
-
-                const SizedBox(
-                  width: 20,
                 ),
 
                 // comment button
