@@ -6,7 +6,7 @@ Get Together with TOGETHER, an Full Stack Social Media App built from scratch.
 
 ## Getting Started
 
-which includes:
+### This app includes:
 
 🔒 Authentication.
 
@@ -22,9 +22,6 @@ which includes:
 
 💬 Post - Comments.
 
-
-⚒️ In progress...
-
 🤝 Follow System.
 
 🔎 Search Users.
@@ -32,3 +29,5 @@ which includes:
 🎨 Themes - Light & Dark Mode.
 
 🌎 Deploy to Web.
+
+
