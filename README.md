@@ -29,6 +29,5 @@ Get Together with TOGETHER, an Full Stack Social Media App built from scratch.
 🎨 Themes - Light & Dark Mode.
 
 🌎 Deploy to Web.
-.
 
 
