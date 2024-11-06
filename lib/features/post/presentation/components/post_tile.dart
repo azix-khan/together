@@ -60,6 +60,15 @@ class _PostTileState extends State<PostTile> {
     }
   }
 
+  // user tapped the like button
+  void toggleLikePost() {
+    // grad the current like status
+    final isLiked = widget.post.likes.contains(currentUser!.uid);
+
+    // update the like
+    postCubit.toggleLikePost(widget.post.id, currentUser!.uid);
+  }
+
   // show opptions on deletion
   void showOptions() {
     showDialog(
@@ -163,7 +172,14 @@ class _PostTileState extends State<PostTile> {
             child: Row(
               children: [
                 // like button
-                Icon(Icons.favorite),
+                GestureDetector(
+                  onTap: toggleLikePost,
+                  child: Icon(
+                    widget.post.likes.contains(currentUser!.uid)
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                  ),
+                ),
 
                 // count of likes
                 Text("0"),
