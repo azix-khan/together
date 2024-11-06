@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:together/features/home/presentation/components/my_drawer.dart';
-import 'package:together/features/home/presentation/components/post_tile.dart';
+import 'package:together/features/post/presentation/components/post_tile.dart';
 import 'package:together/features/post/presentation/cubits/post_states.dart';
 
 import '../../../post/presentation/cubits/post_cubit.dart';

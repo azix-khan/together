@@ -7,6 +7,8 @@ class Post {
   final String text;
   final String imageUrl;
   final DateTime timestamp;
+  final List<String>
+      likes; // store all uid for the people that likes specific post
 
   Post({
     required this.id,
@@ -15,6 +17,7 @@ class Post {
     required this.text,
     required this.imageUrl,
     required this.timestamp,
+    required this.likes,
   });
 
   // if want to change anything we use copywith method
@@ -26,6 +29,7 @@ class Post {
       text: text,
       imageUrl: imageUrl ?? this.imageUrl,
       timestamp: timestamp,
+      likes: likes,
     );
   }
 
@@ -38,6 +42,7 @@ class Post {
       'text': text,
       'imageUrl': imageUrl,
       'timestamp': Timestamp.fromDate(timestamp),
+      'likes': likes,
     };
   }
 
@@ -50,6 +55,7 @@ class Post {
       text: json['text'],
       imageUrl: json['imageUrl'],
       timestamp: (json['timestamp'] as Timestamp).toDate(),
+      likes: json['likes'] ?? [],
     );
   }
 }
