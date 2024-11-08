@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:together/features/auth/domain/entities/app_user.dart';
+import 'package:together/features/auth/presentation/components/my_text_field.dart';
 import 'package:together/features/auth/presentation/cubits/auth_cubit.dart';
+import 'package:together/features/post/domain/entities/comment.dart';
 import 'package:together/features/post/domain/entities/post.dart';
 import 'package:together/features/post/presentation/cubits/post_cubit.dart';
 import 'package:together/features/profile/domain/entities/profile_user.dart';
@@ -60,6 +62,7 @@ class _PostTileState extends State<PostTile> {
     }
   }
 
+  // LIKES
   // user tapped the like button
   void toggleLikePost() {
     // grad the current like status
@@ -87,6 +90,64 @@ class _PostTileState extends State<PostTile> {
         }
       });
     });
+  }
+
+  // COMMENTS
+
+  // comment text controller
+  final commentTextController = TextEditingController();
+  // open an comment box -> user wants to type a new comment
+  void openNewCommentBox() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: MyTextField(
+          controller: commentTextController,
+          hintText: "Type a comment",
+          obscureText: false,
+        ),
+        actions: [
+          // cancel button
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text("Cancel"),
+          ),
+
+          // save button
+          TextButton(
+            onPressed: () {
+              addComment();
+              Navigator.of(context).pop();
+            },
+            child: const Text("Save"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void addComment() {
+    // create a new comment
+    final newComment = Comment(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      postId: widget.post.id,
+      userId: widget.post.userId,
+      userName: widget.post.userName,
+      text: commentTextController.text,
+      timestamp: DateTime.now(),
+    );
+
+    // add comment using cubit
+
+    if (commentTextController.text.isNotEmpty) {
+      postCubit.addComment(widget.post.id, newComment);
+    }
+  }
+
+  @override
+  void dispose() {
+    commentTextController.dispose();
+    super.dispose();
   }
 
   // show opptions on deletion
