@@ -8,9 +8,9 @@ Get Together with TOGETHER, an Full Stack Social Media App built from scratch.
 
 ### This app includes:
 
-🔒 Authentication.
+🔒 Authentication. ✅
 
-⚙️ Menu Drawer.
+⚙️ Menu Drawer. ✅ 
 
 🥷🏽 User Profile.
 
