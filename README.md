@@ -12,7 +12,7 @@ Get Together with TOGETHER, an Full Stack Social Media App built from scratch.
 
 ⚙️ Menu Drawer. ✅ 
 
-🥷🏽 User Profile.
+🥷🏽 User Profile. ✅
 
 🤪 Profile Picture.
 
