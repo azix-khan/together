@@ -18,7 +18,7 @@ Get Together with TOGETHER, an Full Stack Social Media App built from scratch.
 
 📸 Post - Upload & Delete. ✅
 
-❤️ Post - Likes.
+❤️ Post - Likes. ✅
 
 💬 Post - Comments.
 
