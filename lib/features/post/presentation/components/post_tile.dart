@@ -286,10 +286,10 @@ class _PostTileState extends State<PostTile> {
                 ),
 
                 // comment button
-                Icon(Icons.comment),
+                const Icon(Icons.comment),
 
                 // count of comments
-                Text("0"),
+                const Text("0"),
 
                 const Spacer(),
 
