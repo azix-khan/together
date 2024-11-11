@@ -286,10 +286,26 @@ class _PostTileState extends State<PostTile> {
                 ),
 
                 // comment button
-                const Icon(Icons.comment),
+                GestureDetector(
+                  onTap: openNewCommentBox,
+                  child: Icon(
+                    Icons.comment,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+
+                const SizedBox(
+                  width: 5,
+                ),
 
                 // count of comments
-                const Text("0"),
+                Text(
+                  widget.post.comments.length.toString(),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 12,
+                  ),
+                ),
 
                 const Spacer(),
 
@@ -298,6 +314,28 @@ class _PostTileState extends State<PostTile> {
               ],
             ),
           ),
+
+          // CAPTION
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+            child: Row(
+              children: [
+                // user name
+                Text(
+                  widget.post.userName,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                // text
+                Text(widget.post.text),
+              ],
+            ),
+          )
+
+          // COMMENT SECTION
         ],
       ),
     );
