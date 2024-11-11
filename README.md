@@ -20,7 +20,7 @@ Get Together with TOGETHER, an Full Stack Social Media App built from scratch.
 
 ❤️ Post - Likes. ✅
 
-💬 Post - Comments.
+💬 Post - Comments. 🌀
 
 🤝 Follow System.
 
