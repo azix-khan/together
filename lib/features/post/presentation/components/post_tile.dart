@@ -6,7 +6,9 @@ import 'package:together/features/auth/presentation/components/my_text_field.dar
 import 'package:together/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:together/features/post/domain/entities/comment.dart';
 import 'package:together/features/post/domain/entities/post.dart';
+import 'package:together/features/post/presentation/components/comment_tile.dart';
 import 'package:together/features/post/presentation/cubits/post_cubit.dart';
+import 'package:together/features/post/presentation/cubits/post_states.dart';
 import 'package:together/features/profile/domain/entities/profile_user.dart';
 import 'package:together/features/profile/presentation/cubits/profile_cubit.dart';
 
@@ -131,8 +133,8 @@ class _PostTileState extends State<PostTile> {
     final newComment = Comment(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       postId: widget.post.id,
-      userId: widget.post.userId,
-      userName: widget.post.userName,
+      userId: currentUser!.uid,
+      userName: currentUser!.name,
       text: commentTextController.text,
       timestamp: DateTime.now(),
     );
@@ -333,9 +335,50 @@ class _PostTileState extends State<PostTile> {
                 Text(widget.post.text),
               ],
             ),
-          )
+          ),
 
           // COMMENT SECTION
+          BlocBuilder<PostCubit, PostState>(
+            builder: (context, state) {
+              // LOADED
+              if (state is PostsLoaded) {
+                // final individual post
+                final post = state.posts
+                    .firstWhere((post) => (post.id == widget.post.id));
+
+                if (post.comments.isNotEmpty) {
+                  // control how many comments u want to show
+                  int showCommentCount = post.comments.length;
+
+                  // comment section
+                  return ListView.builder(
+                    itemCount: showCommentCount,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      // get individual comment
+                      final comment = post.comments[index];
+
+                      // comment tile UI
+                      return CommentTile(comment: comment);
+                    },
+                  );
+                }
+              }
+
+              // Loading ...
+              if (state is PostsLoading) {
+                return const Center(child: CircularProgressIndicator());
+              }
+
+              // ERROR
+              else if (state is PostsError) {
+                return Center(child: Text(state.message));
+              } else {
+                return const SizedBox();
+              }
+            },
+          ),
         ],
       ),
     );
