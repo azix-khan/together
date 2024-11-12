@@ -115,9 +115,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
+
+                const SizedBox(height: 25),
 
                 // bio box
                 Padding(
@@ -152,6 +151,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
 
                 const SizedBox(height: 10),
+
                 // list of posts from this user
                 BlocBuilder<PostCubit, PostState>(
                   builder: (context, state) {

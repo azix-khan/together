@@ -221,9 +221,7 @@ class _PostTileState extends State<PostTile> {
                         )
                       : const Icon(Icons.person),
 
-                  const SizedBox(
-                    width: 10,
-                  ),
+                  const SizedBox(width: 10),
 
                   // name
                   Text(
@@ -282,9 +280,7 @@ class _PostTileState extends State<PostTile> {
                         ),
                       ),
 
-                      const SizedBox(
-                        width: 5,
-                      ),
+                      const SizedBox(width: 5),
 
                       // count of likes
                       Text(
@@ -307,9 +303,7 @@ class _PostTileState extends State<PostTile> {
                   ),
                 ),
 
-                const SizedBox(
-                  width: 5,
-                ),
+                const SizedBox(width: 5),
 
                 // count of comments
                 Text(
@@ -339,9 +333,7 @@ class _PostTileState extends State<PostTile> {
                   widget.post.userName,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
                 // text
                 Text(widget.post.text),
               ],
