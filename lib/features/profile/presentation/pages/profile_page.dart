@@ -86,9 +86,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
+                const SizedBox(height: 25),
 
                 // profile pic
                 CachedNetworkImage(
@@ -135,9 +133,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 BioBox(text: user.bio),
 
                 // posts
@@ -155,6 +151,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
 
+                const SizedBox(height: 10),
                 // list of posts from this user
                 BlocBuilder<PostCubit, PostState>(
                   builder: (context, state) {
