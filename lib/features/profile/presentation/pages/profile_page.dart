@@ -42,10 +42,25 @@ class _ProfilePageState extends State<ProfilePage> {
     profileCubit.fetchUserProfile(widget.uid);
   }
 
+  // follow / unfollow
+
+  void followButtonPressed() {
+    final profileState = profileCubit.state;
+    if (profileState is! ProfileLoaded) {
+      return; // return nothing bcz profile is not loaded yet
+    }
+
+    final profileUser = profileState.profileUser;
+    final isFollowing = profileUser.followers.contains(currentUser!.uid);
+
+    profileCubit.targetFollow(currentUser!.uid, widget.uid);
+  }
+
   // BUILD UI
   @override
   Widget build(BuildContext context) {
-    //SCAFFOLD
+    // is own post
+    bool isOwnPost = (widget.uid == currentUser!.uid);
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         // loaded
@@ -61,17 +76,18 @@ class _ProfilePageState extends State<ProfilePage> {
               centerTitle: true,
               actions: [
                 // edit profile button
-                IconButton(
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditProfilePage(user: user),
+                if (isOwnPost)
+                  IconButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EditProfilePage(user: user),
+                      ),
+                    ),
+                    icon: const Icon(
+                      Icons.settings,
                     ),
                   ),
-                  icon: const Icon(
-                    Icons.settings,
-                  ),
-                ),
               ],
             ),
 
@@ -120,10 +136,13 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(height: 25),
 
                 // follow button
-                FollowButton(
-                  onPressed: () {},
-                  isFollowing: true,
-                ),
+                if (!isOwnPost)
+                  FollowButton(
+                    onPressed: followButtonPressed,
+                    isFollowing: user.followers.contains(currentUser!.uid),
+                  ),
+
+                const SizedBox(height: 25),
 
                 // bio box
                 Padding(
