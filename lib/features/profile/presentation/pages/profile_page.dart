@@ -7,6 +7,7 @@ import 'package:together/features/post/presentation/cubits/post_cubit.dart';
 import 'package:together/features/post/presentation/cubits/post_states.dart';
 import 'package:together/features/profile/presentation/components/bio_box.dart';
 import 'package:together/features/profile/presentation/components/follow_button.dart';
+import 'package:together/features/profile/presentation/components/profile_stats.dart';
 import 'package:together/features/profile/presentation/cubits/profile_cubit.dart';
 import 'package:together/features/profile/presentation/cubits/profile_states.dart';
 
@@ -53,7 +54,32 @@ class _ProfilePageState extends State<ProfilePage> {
     final profileUser = profileState.profileUser;
     final isFollowing = profileUser.followers.contains(currentUser!.uid);
 
-    profileCubit.targetFollow(currentUser!.uid, widget.uid);
+    // optimistically update the UI
+    setState(() {
+      // unfollow
+      if (isFollowing) {
+        profileUser.followers.remove(currentUser!.uid);
+      }
+      // follow
+      else {
+        profileUser.followers.add(currentUser!.uid);
+      }
+    });
+
+    // perfom the actual toggle in cubit
+    profileCubit.targetFollow(currentUser!.uid, widget.uid).catchError((error) {
+      // revert update if there is an error
+      setState(() {
+        // unfollow
+        if (isFollowing) {
+          profileUser.followers.add(currentUser!.uid);
+        }
+        // follow
+        else {
+          profileUser.followers.remove(currentUser!.uid);
+        }
+      });
+    });
   }
 
   // BUILD UI
@@ -131,6 +157,15 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ),
+                ),
+
+                const SizedBox(height: 25),
+
+                // prfile stats
+                ProfileStats(
+                  postCount: postCount,
+                  followerCount: user.followers.length,
+                  followingCount: user.following.length,
                 ),
 
                 const SizedBox(height: 25),
