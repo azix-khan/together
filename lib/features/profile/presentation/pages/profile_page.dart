@@ -6,6 +6,7 @@ import 'package:together/features/post/presentation/components/post_tile.dart';
 import 'package:together/features/post/presentation/cubits/post_cubit.dart';
 import 'package:together/features/post/presentation/cubits/post_states.dart';
 import 'package:together/features/profile/presentation/components/bio_box.dart';
+import 'package:together/features/profile/presentation/components/follow_button.dart';
 import 'package:together/features/profile/presentation/cubits/profile_cubit.dart';
 import 'package:together/features/profile/presentation/cubits/profile_states.dart';
 
@@ -117,6 +118,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
 
                 const SizedBox(height: 25),
+
+                // follow button
+                FollowButton(
+                  onPressed: () {},
+                  isFollowing: true,
+                ),
 
                 // bio box
                 Padding(
