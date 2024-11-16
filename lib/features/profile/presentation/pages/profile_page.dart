@@ -10,6 +10,7 @@ import 'package:together/features/profile/presentation/components/follow_button.
 import 'package:together/features/profile/presentation/components/profile_stats.dart';
 import 'package:together/features/profile/presentation/cubits/profile_cubit.dart';
 import 'package:together/features/profile/presentation/cubits/profile_states.dart';
+import 'package:together/features/profile/presentation/pages/follower_page.dart';
 
 import '../../../auth/presentation/cubits/auth_cubit.dart';
 import 'edit_profile_page.dart';
@@ -166,6 +167,15 @@ class _ProfilePageState extends State<ProfilePage> {
                   postCount: postCount,
                   followerCount: user.followers.length,
                   followingCount: user.following.length,
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FollowerPage(
+                        followers: user.followers,
+                        following: user.following,
+                      ),
+                    ),
+                  ),
                 ),
 
                 const SizedBox(height: 25),
