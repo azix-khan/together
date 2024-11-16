@@ -6,6 +6,8 @@ import 'package:together/features/auth/presentation/cubits/auth_state.dart';
 import 'package:together/features/post/data/firebase_post_repo.dart';
 import 'package:together/features/post/presentation/cubits/post_cubit.dart';
 import 'package:together/features/profile/presentation/cubits/profile_cubit.dart';
+import 'package:together/features/search/data/firebase_search_repo.dart';
+import 'package:together/features/search/presentation/cubits/search_cubit.dart';
 import 'package:together/features/storage/data/firebase_storage_repo.dart';
 import 'features/auth/presentation/pages/auth_page.dart';
 import 'features/home/presentation/pages/home_page.dart';
@@ -21,6 +23,8 @@ class MyApp extends StatelessWidget {
   final firebaseStorageRepo = FirebaseStorageRepo();
   // get post repo
   final firebasepostRepo = FirebasePostRepo();
+  // search repo
+  final firebaseSearchRepo = FirebaseSearchRepo();
 
   MyApp({super.key});
 
@@ -47,6 +51,10 @@ class MyApp extends StatelessWidget {
             postRepo: firebasepostRepo,
             storageRepo: firebaseStorageRepo,
           ),
+        ),
+        // search cubit
+        BlocProvider<SearchCubit>(
+          create: (context) => SearchCubit(searchRepo: firebaseSearchRepo),
         ),
       ],
       child: MaterialApp(

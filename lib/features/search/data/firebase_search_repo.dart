@@ -9,10 +9,8 @@ class FirebaseSearchRepo implements SearchRepo {
       final result = await FirebaseFirestore.instance
           .collection("users")
           .where('name', isGreaterThanOrEqualTo: query)
-          .where('name',
-              isLessThanOrEqualTo:
-                  '$query\uf8ff') // user the text range to include the all posible values that starts with the same prefixes the query
-          .get();
+          .where('name', isLessThanOrEqualTo: '$query\uf8ff')
+          .get(); // user the text range to include the all posible values that starts with the same prefixes the query
 
       return result.docs
           .map((doc) => ProfileUser.fromJson(doc.data()))
