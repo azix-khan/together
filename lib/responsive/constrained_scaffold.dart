@@ -21,6 +21,7 @@ class ConstrainedScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar,
+      drawer: drawer,
       body: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(
