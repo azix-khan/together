@@ -9,10 +9,10 @@ import 'package:together/features/profile/presentation/cubits/profile_cubit.dart
 import 'package:together/features/search/data/firebase_search_repo.dart';
 import 'package:together/features/search/presentation/cubits/search_cubit.dart';
 import 'package:together/features/storage/data/firebase_storage_repo.dart';
+import 'package:together/themes/theme_cubit.dart';
 import 'features/auth/presentation/pages/auth_page.dart';
 import 'features/home/presentation/pages/home_page.dart';
 import 'features/profile/data/firebase_profile_repo.dart';
-import 'themes/light_mode.dart';
 
 class MyApp extends StatelessWidget {
   // get auth repo
@@ -56,36 +56,44 @@ class MyApp extends StatelessWidget {
         BlocProvider<SearchCubit>(
           create: (context) => SearchCubit(searchRepo: firebaseSearchRepo),
         ),
+        // theme cubit
+        BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
       ],
-      child: MaterialApp(
-        theme: lightMode,
-        debugShowCheckedModeBanner: false,
-        home: BlocConsumer<AuthCubit, AuthState>(
-          builder: (context, authState) {
-            // if Unauthenticated go to the auth page (login/register)
-            if (authState is UnAuthenticated) {
-              return const AuthPage();
-            }
-            // if authenticate go to home page
-            if (authState is Authenticated) {
-              return const HomePage();
-            }
-            // loading
-            else {
-              return const Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            }
-          },
-          // listen for error while we log in
-          listener: (context, state) {
-            if (state is AuthError) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text(state.message)));
-            }
-          },
+
+      // bloc builder: themes
+      child: BlocBuilder<ThemeCubit, ThemeData>(
+        builder: (context, currrentTheme) => MaterialApp(
+          theme: currrentTheme,
+          debugShowCheckedModeBanner: false,
+
+          // bloc builder: check current auth state
+          home: BlocConsumer<AuthCubit, AuthState>(
+            builder: (context, authState) {
+              // if Unauthenticated go to the auth page (login/register)
+              if (authState is UnAuthenticated) {
+                return const AuthPage();
+              }
+              // if authenticate go to home page
+              if (authState is Authenticated) {
+                return const HomePage();
+              }
+              // loading
+              else {
+                return const Scaffold(
+                  body: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+            },
+            // listen for error while we log in
+            listener: (context, state) {
+              if (state is AuthError) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(state.message)));
+              }
+            },
+          ),
         ),
       ),
     );
