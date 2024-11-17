@@ -11,6 +11,7 @@ import 'package:together/features/profile/presentation/components/profile_stats.
 import 'package:together/features/profile/presentation/cubits/profile_cubit.dart';
 import 'package:together/features/profile/presentation/cubits/profile_states.dart';
 import 'package:together/features/profile/presentation/pages/follower_page.dart';
+import 'package:together/responsive/constrained_scaffold.dart';
 
 import '../../../auth/presentation/cubits/auth_cubit.dart';
 import 'edit_profile_page.dart';
@@ -95,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
           // get loaded user
           final user = state.profileUser;
 
-          return Scaffold(
+          return ConstrainedScaffold(
             // APP BAR
             appBar: AppBar(
               title: Text(user.name),

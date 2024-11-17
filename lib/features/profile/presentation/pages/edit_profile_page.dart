@@ -9,6 +9,7 @@ import 'package:together/features/auth/presentation/components/my_text_field.dar
 import 'package:together/features/profile/domain/entities/profile_user.dart';
 import 'package:together/features/profile/presentation/cubits/profile_cubit.dart';
 import 'package:together/features/profile/presentation/cubits/profile_states.dart';
+import 'package:together/responsive/constrained_scaffold.dart';
 
 class EditProfilePage extends StatefulWidget {
   final ProfileUser user;
@@ -108,7 +109,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   Widget buildEditPage() {
-    return Scaffold(
+    return ConstrainedScaffold(
       appBar: AppBar(
         title: const Text("Edit Profile"),
         foregroundColor: Theme.of(context).colorScheme.primary,

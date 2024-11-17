@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:together/features/home/presentation/components/my_drawer.dart';
 import 'package:together/features/post/presentation/components/post_tile.dart';
 import 'package:together/features/post/presentation/cubits/post_states.dart';
+import 'package:together/responsive/constrained_scaffold.dart';
 
 import '../../../post/presentation/cubits/post_cubit.dart';
 import '../../../post/presentation/pages/upload_post_page.dart';
@@ -41,7 +42,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     // SCAFFOLD
-    return Scaffold(
+    return ConstrainedScaffold(
       // APP BAR
       appBar: AppBar(
         title: const Text("Home"),
