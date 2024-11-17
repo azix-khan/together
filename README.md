@@ -24,9 +24,9 @@ Get Together with TOGETHER, an Full Stack Social Media App built from scratch.
 
 🤝 Follow System. ✅
 
-🔎 Search Users.
+🔎 Search Users. ✅
 
-🎨 Themes - Light & Dark Mode.
+🎨 Themes - Light & Dark Mode. ✅
 
 🌎 Deploy to Web.
 
