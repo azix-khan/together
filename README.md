@@ -2,7 +2,7 @@
 
 Get Together with TOGETHER, an Full Stack Social Media App built from scratch.
 
-• Using Flutter, BLoC, Firebase 
+• Using Flutter, BLoC, Firebase .
 
 ## Getting Started
 
