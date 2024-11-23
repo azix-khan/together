@@ -50,6 +50,10 @@ class SettingsPage extends StatelessWidget {
                   developerImage:
                       "https://media.licdn.com/dms/image/v2/D4D03AQH91hUUAuBJrw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1710179724264?e=1737590400&v=beta&t=i7t44wPnI_BubRi3Nz8HD6OsnUZ09FLHX5uTRVqC0E4",
                   githubUrl: "https://github.com/azix-khan",
+                  linkedinUrl: "https://www.linkedin.com/in/azixkhan",
+                  fiverUrl: "https://www.fiverr.com/azix_khan",
+                  upworkUrl:
+                      "https://www.upwork.com/freelancers/~01880e43610e27bbd4",
                   portfolioUrl: "https://azix-khan.github.io",
                 ),
               );

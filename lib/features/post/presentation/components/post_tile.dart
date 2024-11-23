@@ -332,8 +332,9 @@ class _PostTileState extends State<PostTile> {
                     "Oct",
                     "Nov",
                     "Dec"
-                  ][widget.post.timestamp.month - 1]} ${widget.post.timestamp.year}",
-                )
+                  ][widget.post.timestamp.month - 1]} ${widget.post.timestamp.year} - ${widget.post.timestamp.hour % 12 == 0 ? 12 : widget.post.timestamp.hour % 12}:"
+                  "${widget.post.timestamp.minute.toString().padLeft(2, '0')} ${widget.post.timestamp.hour >= 12 ? 'PM' : 'AM'}",
+                ),
               ],
             ),
           ),

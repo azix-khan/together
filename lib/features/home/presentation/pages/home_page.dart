@@ -49,7 +49,10 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           "together",
           style: TextStyle(
-              fontFamily: GoogleFonts.italianno().fontFamily, fontSize: 53),
+            fontFamily: GoogleFonts.italianno().fontFamily,
+            fontSize: 53,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         foregroundColor: Theme.of(context).colorScheme.primary,
