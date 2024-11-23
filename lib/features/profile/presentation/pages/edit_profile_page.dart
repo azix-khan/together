@@ -178,15 +178,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
           Center(
             child: MaterialButton(
               onPressed: pickImage,
-              color: Colors.blue,
+              color: Colors.grey,
               child: const Text("Pick Image"),
             ),
           ),
+          const SizedBox(height: 10),
           // bio
           const Text("Bio"),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: MyTextField(

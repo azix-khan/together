@@ -317,7 +317,23 @@ class _PostTileState extends State<PostTile> {
                 const Spacer(),
 
                 // timestemp
-                Text(widget.post.timestamp.toString()),
+                // Text(widget.post.timestamp.toString()),
+                Text(
+                  "${widget.post.timestamp.day.toString().padLeft(2, '0')} ${[
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Aug",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dec"
+                  ][widget.post.timestamp.month - 1]} ${widget.post.timestamp.year}",
+                )
               ],
             ),
           ),

@@ -170,9 +170,10 @@ class _UploadPostPageState extends State<UploadPostPage> {
             // pick image button
             MaterialButton(
               onPressed: pickImage,
-              color: Colors.blue,
+              color: Colors.grey,
               child: const Text("Pick Image"),
             ),
+            const SizedBox(height: 12),
 
             // caption text box
 
