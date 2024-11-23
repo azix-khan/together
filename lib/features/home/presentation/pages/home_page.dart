@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:together/features/home/presentation/components/my_drawer.dart';
 import 'package:together/features/post/presentation/components/post_tile.dart';
 import 'package:together/features/post/presentation/cubits/post_states.dart';
@@ -45,7 +46,11 @@ class _HomePageState extends State<HomePage> {
     return ConstrainedScaffold(
       // APP BAR
       appBar: AppBar(
-        title: const Text("Home"),
+        title: Text(
+          "together",
+          style: TextStyle(
+              fontFamily: GoogleFonts.italianno().fontFamily, fontSize: 53),
+        ),
         centerTitle: true,
         foregroundColor: Theme.of(context).colorScheme.primary,
         actions: [
