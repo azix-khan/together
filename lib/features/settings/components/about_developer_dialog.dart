@@ -55,18 +55,18 @@ class AboutDeveloperDialog extends StatelessWidget {
                 RichText(
                   text: TextSpan(
                     children: [
-                      const TextSpan(
+                      TextSpan(
                         text: 'get together',
                         style: TextStyle(
                           fontSize: 14,
-                          color: Colors.grey,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
-                      const TextSpan(
+                      TextSpan(
                         text: ' with ',
                         style: TextStyle(
                           fontSize: 14,
-                          color: Colors.black,
+                          color: Theme.of(context).colorScheme.inversePrimary,
                         ),
                       ),
                       TextSpan(
@@ -102,7 +102,7 @@ class AboutDeveloperDialog extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .titleSmall
-                  ?.copyWith(color: Colors.grey),
+                  ?.copyWith(color: Theme.of(context).colorScheme.primary),
             ),
             const SizedBox(height: 16),
             // Buttons with fixed size
@@ -170,6 +170,7 @@ class AboutDeveloperDialog extends StatelessWidget {
         label: Text(label),
         style: ElevatedButton.styleFrom(
           fixedSize: const Size(150, 30),
+          backgroundColor: Theme.of(context).colorScheme.surface,
         ),
       ),
     );
