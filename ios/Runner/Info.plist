@@ -45,7 +45,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-	<!-- section for url_launcher -->
+	<!-- section for url_launcher  -->
     <key>LSApplicationQueriesSchemes</key>
     <array>
         <string>http</string>
